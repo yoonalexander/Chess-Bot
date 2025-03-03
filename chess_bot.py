@@ -29,3 +29,16 @@ def minimax(board, depth, maximizing):
             board.pop()
             min_eval = min(min_eval, eval)
         return min_eval
+    
+while not board.is_game_over():
+    print(board)
+    move = input("Your move: ")
+    if chess.Move.from_uci(move) in board.legal_moves:
+        board.push(chess.Move.from_uci(move))
+    else:
+        print("Invalid move.")
+    
+    bot_move = random.choice(list(board.legal_moves))
+    board.push(bot_move)
+
+print("Game Over!")
